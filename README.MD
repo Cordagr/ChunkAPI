@@ -55,8 +55,18 @@ case "http":
 ```
 - Update the wanted http address as warranted 
 
-
-
+4. Array Usage
+``` csharp
+case "array":
+    controller.splitCollectionArray(new[] { 1, 2, 3, 4, 5, 6, 7 });
+    break;
+```
+5. List Usage
+``` csharp
+case "list":
+    controller.splitCollectionList(new List<string> { "Alice", "Bob", "Charlie", "David" });
+    break;
+```
 
 
 
