@@ -1,7 +1,5 @@
 ## Chunk API
 This project is a C# console application for splitting data into manageable chunks from different sources.
-## Supports 
-File-based chunking,database chunking, and live http sources 
 ## Features
 - File Chunking
 -- Splits any file to a specified chunk size 
