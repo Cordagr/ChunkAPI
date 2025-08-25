@@ -90,27 +90,28 @@ namespace ChunkProcessingSystem
         public void SplitFileIntoChunks(string filePath, int chunkSizeInBytes)
         {
             using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            using (StreamReader reader = new StreamReader(fs))
             {
-                byte[] buffer = new byte[chunkSizeInBytes];
-                int bytesRead;
+                char[] buffer = new char[chunkSizeInBytes];
+                int charsRead;
                 int chunkNumber = 0;
 
-                while ((bytesRead = fs.Read(buffer, 0, buffer.Length)) > 0)
+                while ((charsRead = reader.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    string outputFileName = $"chunk_{chunkNumber}.bin";
-                    using (FileStream outputFs = new FileStream(outputFileName, FileMode.Create, FileAccess.Write))
+                    string chunkText = new string(buffer, 0, charsRead);
+                    string outputFileName = $"chunk_{chunkNumber}.txt";
+
+                    File.WriteAllText(outputFileName, chunkText);
+
+                    var dataChunk = new DataChunk
                     {
-                        outputFs.Write(buffer, 0, bytesRead);
+                        Name = $"FileChunk_{chunkNumber}",
+                        Payload = System.Text.Encoding.UTF8.GetBytes(chunkText)
+                    };
 
-                        var dataChunk = new DataChunk
-                        {
-                            Name = $"FileChunk_{chunkNumber}",
-                            // take only the bytes read
-                            Payload = buffer.Take(bytesRead).ToArray()
-                        };
+                    processor.ProcessChunk(dataChunk);
 
-                        processor.ProcessChunk(dataChunk);
-                    }
+                    Console.WriteLine($"Wrote {outputFileName} with {charsRead} characters.");
                     chunkNumber++;
                 }
             }

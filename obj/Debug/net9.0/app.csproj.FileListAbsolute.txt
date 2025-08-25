@@ -76,3 +76,4 @@ C:\Users\shirl\Desktop\ExpirementalResults\ChunkAPI\obj\Debug\net9.0\refint\app.
 C:\Users\shirl\Desktop\ExpirementalResults\ChunkAPI\obj\Debug\net9.0\app.pdb
 C:\Users\shirl\Desktop\ExpirementalResults\ChunkAPI\obj\Debug\net9.0\app.genruntimeconfig.cache
 C:\Users\shirl\Desktop\ExpirementalResults\ChunkAPI\obj\Debug\net9.0\ref\app.dll
+C:\Users\shirl\Desktop\ExpirementalResults\ChunkAPI\obj\Debug\net9.0\app.sourcelink.json
